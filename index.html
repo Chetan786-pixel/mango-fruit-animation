@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Viewer</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial;
+            color: white;
+            background: black;
+        }
+
+        /* 🔥 Background (full screen blur cover) */
+        #bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(25px) brightness(0.5);
+            z-index: -3;
+        }
+
+        /* 🥭 Main bottle (center full visible) */
+        #frame {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: -2;
+
+            /* 🔥 Bottle glow */
+            filter: drop-shadow(0 0 30px orange) drop-shadow(0 0 60px orange) drop-shadow(0 0 100px yellow);
+        }
+
+        /* 🌟 Center Content */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 50px;
+            letter-spacing: 2px;
+        }
+
+        .price {
+            font-size: 28px;
+            margin: 15px 0;
+        }
+
+        .old {
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-right: 10px;
+        }
+
+        .price strong {
+            color: #00ffcc;
+        }
+
+        button {
+            padding: 15px 30px;
+            border-radius: 30px;
+            background: black;
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: white;
+            color: black;
+        }
+
+        /* 📜 Bottom description */
+        .desc {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* 🔥 Animated Border Glow */
+        .border-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            border: 4px solid transparent;
+            border-image: linear-gradient(45deg, orange, yellow, red, orange) 1;
+
+            animation: borderAnim 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes borderAnim {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🔥 Background + Main -->
+    <img id="bg" src="ezgif-frame-001.jpg">
+    <img id="frame" src="ezgif-frame-001.jpg">
+
+    <div class="border-glow"></div>
+
+    <!-- 🌟 Content -->
+    <div class="content">
+        <h1>ALPHANSO MANGO</h1>
+        <p>Pure • Fresh • Natural</p>
+
+        <div class="price">
+            <span class="old">₹150</span>
+            <strong>₹120</strong>
+        </div>
+
+        <button onclick="buy()">Add to Basket</button>
+    </div>
+
+    <!-- 📜 Description -->
+    <div class="desc">
+        🥭 Rich in Vitamin A & C | 💪 Boosts Immunity | ⚡ Instant Energy |
+        🌿 100% Natural | ❤️ Good for Skin & Digestion | 🚫 No Preservatives
+    </div>
+
+    <script>
+        let i = 1;
+        const total = 126;
+
+        setInterval(() => {
+            i = (i % total) + 1;
+
+            let src = "ezgif-frame-" + String(i).padStart(3, '0') + ".jpg";
+
+            document.getElementById("frame").src = src;
+            document.getElementById("bg").src = src;
+
+        }, 60);
+
+        function buy() {
+            alert("✅ Item Added to Cart!");
+        }
+    </script>
+
+</body>
+
+</html>
